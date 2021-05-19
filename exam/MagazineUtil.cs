@@ -17,9 +17,9 @@ namespace exam
                 return;
             }
 
-            Shop.AsQueryable()
-                .OrderBy(each => each.Price)
-                .ThenBy(each => each.Name)
+            Shop = Shop.AsQueryable<Magazine>()
+                .OrderByDescending(each => each.Price)
+                .ThenByDescending(each => each.Name)
                 .ToArray();
         }
 
@@ -81,9 +81,9 @@ namespace exam
 
         public static void Output()
         {
-            foreach (Magazine each in Shop)
+            for (int i = 0; i < Shop.Length; ++i)
             {
-                Console.WriteLine(each.ToString());
+                Console.WriteLine(string.Format("[{0}] | {1}", i, Shop[i].ToString()));
             }
         }
 
